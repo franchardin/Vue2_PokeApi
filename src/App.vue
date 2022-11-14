@@ -80,6 +80,8 @@ export default {
             this.error = true;
             this.errorMessage = err
           })
+        // added timeout to function to show the loader in fast connections
+        // (wasn't requested but didn't show when making api calls)
         setTimeout(() => {this.loading = false}, 600)
       } else {
         if(this.initialArray.find(i => i.id === JSON.parse(item).id) === undefined) {
@@ -103,6 +105,8 @@ export default {
             this.error = true;
             this.errorMessage = err
           })
+        // added timeout to function to show the loader in fast connections
+        // (wasn't requested but didn't show when making api calls)
         setTimeout(() => {this.loading = false}, 600)
       } else {
         if(this.initialArray.find(i => i.id === JSON.parse(item).id) === undefined) {
@@ -121,6 +125,8 @@ export default {
           this.error = true;
           this.errorMessage = err
         })
+      // added timeout to function to show the loader in fast connections
+      // (wasn't requested but didn't show when making api calls)
       setTimeout(() => {this.loading = false}, 600)
     },
     // searches pokemon in 1st generation pokemons array
@@ -133,6 +139,8 @@ export default {
           this.doShowError(true, 'Pokemon does not exist. Please try again.')
         }
       }
+      // added timeout to function to show the loader in fast connections
+      // (wasn't requested but didn't show when making api calls)
       setTimeout(() => {this.loading = false}, 600)
     },
     // toggles error message
