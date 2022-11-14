@@ -1,5 +1,8 @@
 # new_banking_identity_-_challenge
 
+## Deploy
+https://celebrated-speculoos-60c55c.netlify.app/
+
 ## Project setup
 ```
 npm install
