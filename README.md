@@ -3,6 +3,9 @@
 ## Deploy
 https://celebrated-speculoos-60c55c.netlify.app/
 
+## PokeApi documentation
+https://pokeapi.co/docs/v2
+
 ## Project setup
 ```
 npm install
