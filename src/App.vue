@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <TheHeader />
+    <TheHeader @restartApp="restartApp"/>
     <SearchBar @doSearch="doSearch" @doShowError="doShowError"/>
     <ErrorIndicator v-show="error" :message="errorMessage" />
     <loadingIndicator :loading="loading"/>
@@ -44,6 +44,14 @@ export default {
     async initialize() {
       this.getAllPokemonData()
       this.getInitialData()
+    },
+    restartApp() {
+      this.loading = true
+      this.initialArray = []
+      this.getInitialData()
+      this.error = false
+      this.errorMessage = ''
+      this.loading = false
     },
     // pokemons for the initial API request
     async getInitialData() {
@@ -116,15 +124,23 @@ export default {
     },
     // gets name and url of all 1st generation pokemons
     async getAllPokemonData() {
-      this.loading = true
-      fetch(this.url + 'pokemon?limit=151')
-        .then(res => (res.status, res.json()))
-        .then(json => this.namesDataArray = json.results)
-        .catch(err => {
-          console.error(err)
-          this.error = true;
-          this.errorMessage = err
-        })
+      const item = localStorage.getItem('allPokemon')
+      if(item === null) {
+        this.loading = true
+        fetch(this.url + 'pokemon?limit=151')
+          .then(res => (res.status, res.json()))
+          .then(json => {
+            this.namesDataArray = json.results
+            localStorage.setItem('allPokemon', JSON.stringify(json.results))
+          })
+          .catch(err => {
+            console.error(err)
+            this.error = true;
+            this.errorMessage = err
+          })
+      } else {
+        this.namesDataArray = JSON.parse(item)
+      }
       // added timeout to function to show the loader in fast connections
       // (wasn't requested but didn't show when making api calls)
       setTimeout(() => {this.loading = false}, 600)

@@ -1,6 +1,6 @@
 <template>
-  <div class="headerContainer">
-    <img src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="image with pokeapi logo in blue and yellow"/>
+  <div class="headerContainer" title="Restart app">
+    <img @click="restartApp" src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" alt="image with pokeapi logo in blue and yellow"/>
   </div>
 </template>
 
@@ -10,6 +10,11 @@ export default {
   name: 'TheHeader',
   props: {
     imageSrc: String
+  },
+  methods: {
+    restartApp() {
+      this.$emit('restartApp')
+    }
   }
 }
 </script>
@@ -22,6 +27,7 @@ export default {
 img {
   max-width: 80vw;
   height: auto;
+  cursor: pointer;
 }
 @media screen and (max-width: 200px) {
   .headerContainer {
